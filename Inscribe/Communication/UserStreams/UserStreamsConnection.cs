@@ -93,7 +93,7 @@ namespace Inscribe.Communication.UserStreams
             catch (ThreadAbortException) { }
             catch (Exception e)
             {
-                ExceptionStorage.Register(e, ExceptionCategory.InternalError, 
+                ExceptionStorage.Register(e, ExceptionCategory.InternalError,
                     "メッセージポンピングシステムにエラーが発生しました。");
                 Task.Factory.StartNew(() => StartPump());
             }
@@ -130,24 +130,24 @@ namespace Inscribe.Communication.UserStreams
                 case ElementKind.Delete:
                     TweetStorage.Remove(elem.DeletedStatusId);
                     break;
-                    /*
-                     * TODO:Implements later?
-                case ElementKind.ListUpdated:
-                    break;
-                case ElementKind.ListMemberAdded:
-                    if (ListStorage.IsListMemberCached(elem.TargetList.User.ScreenName, elem.TargetList.Name))
-                    {
-                        var members = ListStorage.GetListMembers(elem.TargetList.User.ScreenName, elem.TargetList.Name);
-                    }
-                    break;
+                /*
+                 * TODO:Implements later?
+            case ElementKind.ListUpdated:
+                break;
+            case ElementKind.ListMemberAdded:
+                if (ListStorage.IsListMemberCached(elem.TargetList.User.ScreenName, elem.TargetList.Name))
+                {
+                    var members = ListStorage.GetListMembers(elem.TargetList.User.ScreenName, elem.TargetList.Name);
+                }
+                break;
 
-                case ElementKind.ListMemberRemoved:
-                case ElementKind.ListSubscribed:
-                case ElementKind.ListUnsubscribed:
-                    // TODO: do something
+            case ElementKind.ListMemberRemoved:
+            case ElementKind.ListSubscribed:
+            case ElementKind.ListUnsubscribed:
+                // TODO: do something
 
-                    break;
-                    */
+                break;
+                */
                 case ElementKind.Follow:
                 case ElementKind.Unfollow:
                     var affect = AccountStorage.Get(elem.SourceUser.ScreenName);
@@ -259,7 +259,9 @@ namespace Inscribe.Communication.UserStreams
                             System.Diagnostics.Debug.WriteLine(info.ScreenName + " - User Streams Connection with Track: " + track);
                             connection = streamingCore.ConnectNew(
                                 info, StreamingDescription.ForUserStreams(TwitterDefine.UserStreamsTimeout,
-                                track: track, repliesAll: info.AccountProperty.UserStreamsRepliesAll));
+                                track: track, repliesAll: info.AccountProperty.UserStreamsRepliesAll,
+                                // ***cat***
+                                includeFollowingsActivity: info.AccountProperty.UserStreamsFollowingsActivity));
                         }
                     }
                     catch (WebException we)

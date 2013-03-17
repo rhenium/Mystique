@@ -57,6 +57,17 @@ namespace Inscribe.ViewModels.Dialogs.Account
             }
         }
 
+        public bool UserStreamsFollowingsActivity
+        {
+            get { return this.AccountInfo.AccountProperty.UserStreamsFollowingsActivity; }
+            set
+            {
+                IsModified = true;
+                this.AccountInfo.AccountProperty.UserStreamsFollowingsActivity = value;
+                RaisePropertyChanged(() => UserStreamsFollowingsActivity);
+            }
+        }
+
         public string Footer
         {
             get { return this.AccountInfo.AccountProperty.FooterString; }

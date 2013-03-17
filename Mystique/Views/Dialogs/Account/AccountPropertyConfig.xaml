@@ -104,7 +104,24 @@
                             </ToolTip>
                         </CheckBox.ToolTip>
                     </CheckBox>
-                    <TextBlock Margin="6,57,0,0"
+                    <CheckBox Margin="6,54,0,0"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Top"
+                              IsChecked="{Binding UserStreamsFollowingsActivity}">
+                        <AccessText Text="フォロー中ユーザーのアクティビティも取得(_A)" />
+                        <CheckBox.ToolTip>
+                            <ToolTip>
+                                <TextBlock>
+                                    <Run Text="フォローしているユーザーのお気に入り・リスト追加・フォローを取得するようにします。" />
+                                    <LineBreak />
+                                    <Run Text="多くのフォロワーがいるユーザーをフォローしている場合、この機能はオフにしておくことをお勧めします。" />
+                                    <LineBreak />
+                                    <Run Text="なお、この機能はUser Streamsが有効な時のみ動作します。" />
+                                </TextBlock>
+                            </ToolTip>
+                        </CheckBox.ToolTip>
+                    </CheckBox>
+                    <TextBlock Margin="6,81,0,0"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Top"
                                Text="フッター">
@@ -120,7 +137,7 @@
                             </TextBlock>
                         </TextBlock.ToolTip>
                     </TextBlock>
-                    <TextBox Margin="60,54,6,0"
+                    <TextBox Margin="60,78,6,0"
                              VerticalAlignment="Top"
                              Text="{Binding Footer,
                                             UpdateSourceTrigger=PropertyChanged}" />

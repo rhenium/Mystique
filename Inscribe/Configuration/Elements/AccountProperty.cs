@@ -10,6 +10,7 @@ namespace Inscribe.Configuration.Accounts
         {
             this.IsSelectedDefault = false;
             this.UserStreamsRepliesAll = false;
+            this.UserStreamsFollowingsActivity = false;
             this.UseUserStreams = true;
             this.AutoCruiseDefaultMu = 0.5;
             this.AutoCruiseApiConsumeRate = 0.8;
@@ -20,6 +21,8 @@ namespace Inscribe.Configuration.Accounts
         public bool IsSelectedDefault { get; set; }
 
         public bool UserStreamsRepliesAll { get; set; }
+
+        public bool UserStreamsFollowingsActivity { get; set; }
 
         public bool UseUserStreams { get; set; }
 

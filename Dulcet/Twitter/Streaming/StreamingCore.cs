@@ -153,6 +153,8 @@ namespace Dulcet.Twitter.Streaming
                 args.Add(new KeyValuePair<string, string>("replies", "all"));
             if (!String.IsNullOrWhiteSpace(desc.With))
                 args.Add(new KeyValuePair<string, string>("with", HttpUtility.UrlEncodeStrict(desc.With, Encoding.UTF8, true)));
+            if (desc.includeFollowingsActivity.GetValueOrDefault())
+                args.Add(new KeyValuePair<string, string>("include_followings_activity", "true"));
             return args;
         }
 
@@ -344,11 +346,12 @@ namespace Dulcet.Twitter.Streaming
         /// </summary>
         public string With { get; private set; }
         public int Timeout { get; private set; }
+        public bool? includeFollowingsActivity { get; private set; }
 
 
         private StreamingDescription(
             StreamingType type, int timeout, int? count = null, int? delimited = null, string follow = null,
-            string track = null, string locations = null, bool? repliesAll = null, string with = null)
+            string track = null, string locations = null, bool? repliesAll = null, string with = null, bool? includeFollowingsActivity = null)
         {
             this.Type = type;
             this.Timeout = timeout;
@@ -359,6 +362,7 @@ namespace Dulcet.Twitter.Streaming
             this.Locations = locations;
             this.RepliesAll = repliesAll;
             this.With = with;
+            this.includeFollowingsActivity = includeFollowingsActivity;
         }
 
         /// <summary>
@@ -420,10 +424,10 @@ namespace Dulcet.Twitter.Streaming
         /// </summary>
         public static StreamingDescription ForUserStreams(int timeout,
             int? count = null, int? delimited = null, bool? repliesAll = null,
-            string track = null, string with = null)
+            string track = null, string with = null, bool? includeFollowingsActivity = null)
         {
             return new StreamingDescription(StreamingType.user, timeout,
-                count: count, delimited: delimited, track: track, with: with, repliesAll: repliesAll);
+                count: count, delimited: delimited, track: track, with: with, repliesAll: repliesAll, includeFollowingsActivity: includeFollowingsActivity);
         }
     }
 }
