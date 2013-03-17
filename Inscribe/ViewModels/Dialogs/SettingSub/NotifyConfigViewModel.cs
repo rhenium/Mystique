@@ -22,6 +22,7 @@ namespace Inscribe.ViewModels.Dialogs.SettingSub
             this._soundNotificationStrategyIndex = (int)Setting.Instance.NotificationProperty.SoundNotificationStrategy;
 
             this.IsInvisibleSomethingEnabled = Setting.Instance.NotificationProperty.IsInvisibleSomethingEnabled;
+            this.IsNotifyOthersFavoriteEnabled = Setting.Instance.NotificationProperty.IsNotifyOthersFavoriteEnabled;
         }
 
         private bool _tabNotifyEnabledAsDefault;
@@ -101,6 +102,17 @@ namespace Inscribe.ViewModels.Dialogs.SettingSub
             }
         }
 
+        private bool _isNotifyOthersFavoriteEnabled;
+        public bool IsNotifyOthersFavoriteEnabled
+        {
+            get { return _isNotifyOthersFavoriteEnabled; }
+            set
+            {
+                _isNotifyOthersFavoriteEnabled = value;
+                RaisePropertyChanged(() => IsNotifyOthersFavoriteEnabled);
+            }
+        }
+
         public void Apply()
         {
             Setting.Instance.NotificationProperty.IsTabNotifyEnabledAsDefault = this._tabNotifyEnabledAsDefault;
@@ -112,6 +124,7 @@ namespace Inscribe.ViewModels.Dialogs.SettingSub
             Setting.Instance.NotificationProperty.SoundNotificationStrategy = (NotificationStrategy)this._soundNotificationStrategyIndex;
 
             Setting.Instance.NotificationProperty.IsInvisibleSomethingEnabled = this.IsInvisibleSomethingEnabled;
+            Setting.Instance.NotificationProperty.IsNotifyOthersFavoriteEnabled = this.IsNotifyOthersFavoriteEnabled;
         }
     }
 }

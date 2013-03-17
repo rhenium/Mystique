@@ -69,7 +69,7 @@ namespace Inscribe.Storage
         }
 
         #endregion
-      
+
         #region EventChangedイベント
 
         public static event EventHandler<EventArgs> EventChanged;
@@ -103,7 +103,8 @@ namespace Inscribe.Storage
 
         public static void OnFavored(TweetViewModel tweet, UserViewModel favorer)
         {
-            if (AccountStorage.Contains(favorer.TwitterUser.ScreenName))
+            if (AccountStorage.Contains(favorer.TwitterUser.ScreenName) ||
+                !Setting.Instance.NotificationProperty.IsNotifyOthersFavoriteEnabled && !AccountStorage.Contains(tweet.Status.User.ScreenName))
                 return;
             Register(new EventDescription(EventKind.Favorite, favorer,
                  UserStorage.Get(tweet.Status.User), tweet));
@@ -111,7 +112,8 @@ namespace Inscribe.Storage
 
         public static void OnUnfavored(TweetViewModel tweet, UserViewModel favorer)
         {
-            if (AccountStorage.Contains(favorer.TwitterUser.ScreenName))
+            if (AccountStorage.Contains(favorer.TwitterUser.ScreenName) ||
+                !Setting.Instance.NotificationProperty.IsNotifyOthersFavoriteEnabled && !AccountStorage.Contains(tweet.Status.User.ScreenName))
                 return;
             Register(new EventDescription(EventKind.Unfavorite,
                 favorer, UserStorage.Get(tweet.Status.User), tweet));

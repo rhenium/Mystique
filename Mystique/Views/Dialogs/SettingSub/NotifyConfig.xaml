@@ -74,5 +74,10 @@
                   IsChecked="{Binding IsInvisibleSomethingEnabled}"
                   Visibility="{Binding IsTranscender,
                                        Converter={StaticResource BoolVisibleConverter}}" />
+        <CheckBox Margin="4,2"
+                  Content="自分と関係がないお気に入り登録を通知する(_A)"
+                  IsChecked="{Binding IsNotifyOthersFavoriteEnabled}"
+                  Visibility="{Binding IsTranscender,
+                                       Converter={StaticResource BoolVisibleConverter}}" />
     </StackPanel>
 </UserControl>

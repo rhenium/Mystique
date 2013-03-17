@@ -260,7 +260,6 @@ namespace Inscribe.Communication.UserStreams
                             connection = streamingCore.ConnectNew(
                                 info, StreamingDescription.ForUserStreams(TwitterDefine.UserStreamsTimeout,
                                 track: track, repliesAll: info.AccountProperty.UserStreamsRepliesAll,
-                                // ***cat***
                                 includeFollowingsActivity: info.AccountProperty.UserStreamsFollowingsActivity));
                         }
                     }
